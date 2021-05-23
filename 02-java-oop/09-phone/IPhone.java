@@ -15,10 +15,10 @@ public class IPhone extends Phone implements Ringable {
     }
     @Override
     public void displayInfo() {
-        System.out.println(this.getVersionNumber());
-        System.out.println(this.getBatteryPercentage());
-        System.out.println(this.getCarrier());
-        System.out.println(this.getRingtone());        
+        System.out.println(this.versionNumber());
+        System.out.println(this.batteryPercentage());
+        System.out.println(this.carrier());
+        System.out.println(this.ringtone());        
     }
     
 }

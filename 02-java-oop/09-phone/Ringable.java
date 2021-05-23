@@ -1,4 +1,4 @@
 public interface Ringable {
-    public String Ring();
-    public String Unlock();
+    void Ring(String getringTone);
+    void Unlock(String getUnlock);
 }
