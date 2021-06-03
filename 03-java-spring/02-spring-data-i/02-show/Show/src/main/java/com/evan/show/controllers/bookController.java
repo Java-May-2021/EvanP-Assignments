@@ -18,7 +18,6 @@ import com.evan.show.services.BookService;
 
 @Controller
 public class bookController {
-	private static final String RequestMethod = null;
 	@Autowired
 	private BookService bookService;
 	
@@ -36,16 +35,39 @@ public class bookController {
 	}
 	@GetMapping("/books/new")
 	public String newBook(@ModelAttribute("book") Book book) {
-			return "/books/new.jsp";
+			return "/books/newBook.jsp";
 	}
 	@PostMapping(value="/books")
 	public String create(@Valid @ModelAttribute("book") Book book, BindingResult result) {
 		if(result.hasErrors()) {
-			return "books/new.jsp";
+			return "books/newBook.jsp";
 		}else {
 			bookService.createBook(book);
 			return "redirect:/books";
 		}
 	}
-
+	@GetMapping("/books/edit/{id}")
+	public String editBook(@PathVariable("id") int id, Model model) {
+		Book book = bookService.findBookByIndex(id);
+		if (book != null) {
+			model.addAttribute("book", book);
+			return "editBook.jsp";
+		}else {
+			return "redirect:/books";
+		}
+	}
+	@PostMapping("/books/edit/{id}")
+	public String updateBook(@PathVariable("id") int id, @Valid @ModelAttribute("book") Book book, BindingResult result) {
+		if (result.hasErrors()) {
+			return "editBook.jsp";
+		}else {
+			this.bookService.updateBook(id, book);
+			return "redirect:/books{id}";
+		}
+	}
+	@GetMapping(value="/books/delete/{id}")
+	public String destroyBook(@PathVariable("id") Long id) {
+		this.bookService.destroyBook((long) id);
+		return "redirect:/books";
+	}
 }

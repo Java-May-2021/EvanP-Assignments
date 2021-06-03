@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Edit Book</title>
 </head>
 <body>
 <h1>New Book</h1>
-<form:form action="/books" method="post" modelAttribute="book">
+<form:form action="/books/edit/${book.id}" method="post" modelAttribute="book">
     <p>
         <form:label path="title">Title</form:label>
         <form:errors path="title"/>
@@ -33,6 +33,5 @@
     </p>    
     <input type="submit" value="Submit"/>
 </form:form>
-
 </body>
 </html>

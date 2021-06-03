@@ -13,8 +13,7 @@ import com.evan.show.services.BookService;
 
 @RestController
 public class BooksApi {
-	private BookService bookService;
-	
+	private BookService bookService;	
 	public BooksApi(BookService bookService) {
 		this.bookService = bookService;
 	}
@@ -33,6 +32,15 @@ public class BooksApi {
 	public Book show(@PathVariable("id") Long id) {
 		Book book = bookService.findBook(id);
 		return book;
+	}
+	@RequestMapping(value="/api/books/{id}", method=RequestMethod.PUT)
+	public Book update(@PathVariable("id") Long id, @RequestParam(value="title") String title, @RequestParam(value="description") String description, @RequestParam(value="language") String language, @RequestParam(value="pages") Integer numOfPages) {
+		Book book = bookService.updateBook(id, title, description, language, numOfPages);
+		return book;
+	}
+	@RequestMapping(value="/api/books/{id}", method=RequestMethod.DELETE)
+	public void destroy(@PathVariable("id") Long id) {
+		bookService.destroyBook(id);
 	}
 
 }

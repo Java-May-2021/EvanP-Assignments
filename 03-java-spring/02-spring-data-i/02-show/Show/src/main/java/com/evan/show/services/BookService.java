@@ -56,4 +56,18 @@ public class BookService {
 	public Book getSingleBook(long id) {
 		return this.bookRepository.findById(id).orElse(null);
 	}
+	public Book updateBook(int id, Book book) {
+		if (id < books.size()) {
+			books.set(id, book);
+		}
+		return book;
+	}
+	public void destroyBook(Long id) {
+		if (id < books.size()) {
+			books.remove(id);
+		}
+	}
+	public Book updateBook(Long id, String title, String description, String language, Integer numOfPages) {
+		return null;
+	}
 }
