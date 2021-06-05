@@ -25,7 +25,7 @@ public class BooksApi {
 	@RequestMapping(value="/api/books", method=RequestMethod.POST)
 	public Book create(@RequestParam(value="title") String title, @RequestParam(value="description") String description, @RequestParam(value="language") String language, @RequestParam(value="pages") Integer numOfPages) {
 		Book book = new Book(title, description, language, numOfPages);
-		return bookService.createBook(book);
+		return bookService.addBook(book);
 	}
 	
 	@RequestMapping("/api/books/{id")

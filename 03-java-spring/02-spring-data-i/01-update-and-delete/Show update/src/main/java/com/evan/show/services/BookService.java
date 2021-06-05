@@ -42,7 +42,7 @@ public class BookService {
 	public List<Book> getAllBooks() {
 		return bookRepository.findAll();
 	}
-	public Book createBook(Book book) {
+	public Book addBook(Book book) {
 		return bookRepository.save(book);
 	}
 	public Book findBook(Long id) {
