@@ -3,6 +3,7 @@ package com.evan.dlicense.models;
 import java.util.Date;
 
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,14 +12,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name="persons")
 public class Person {
+	public Person() {
+
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -29,14 +32,14 @@ public class Person {
 	private Date updatedAt;
 	@OneToOne(mappedBy="person", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private License license;
-	
-	public Person() {
-		
-	}
-	public Person(String firstName, String lastName) {
+
+	public Person(String firstName, String lastName, Date createdAt, Date updatedAt) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 	}
+	
 	
 	public Long getId() {
 		return id;
@@ -73,14 +76,5 @@ public class Person {
 	}
 	public void setLicense(License license) {
 		this.license = license;
-	}	
-	@PrePersist
-	protected void onCreate() {
-		this.createdAt = new Date();
-	}
-	
-	@PreUpdate
-	protected void onUpdate() {
-		this.updatedAt = new Date();
 	}
 }

@@ -26,7 +26,7 @@ public class LicenseController {
 	private LicenseService licenseService;
 	
 
-	@GetMapping("/persons/new")
+	@GetMapping("/")
 	public String newPerson(@ModelAttribute("person") Person person) {
 		return "newperson.jsp";
 	}
@@ -37,7 +37,7 @@ public class LicenseController {
 			return "newperson.jsp";
 		}else {
 			this.personService.createPerson(person);
-			return "redirect:/licenses/new";
+			return "redirect:/licenses";
 		}
 	}
 	
@@ -54,13 +54,13 @@ public class LicenseController {
 			return "newlicense.jsp";
 		}else {
 			this.licenseService.createLicense(license);
-			return "redirect:/" +license.getPerson().getId();
+			return "redirect:/persons/" +license.getPerson().getId();
 		}
 	}
 	
 	@GetMapping("/persons/{id}")
-	public String getLicense(@PathVariable("id") Long id, Model model) {
-		Person person = this.personService.getPerson(id);
+	public String showLicense(@PathVariable("id") Long id, Model model) {
+		Person person = this.personService.getSinglePerson(id);
 		model.addAttribute("person", person);
 		if(person.getLicense() != null) {
 			License license = person.getLicense();

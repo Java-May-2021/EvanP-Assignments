@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>New Person</h1>
-<form:form action="/licenses/new" method="post" modelAttribute="person">
+<form:form action="/persons/new" method="post" modelAttribute="person">
 <p>
 <form:label path="firstName">First Name: </form:label>
 <form:errors path="firstName"/>
@@ -21,7 +21,7 @@
 <form:errors path="lastName"/>
 <form:input path="lastName"/>
 </p>
-<input type="submit" value="Create Person">
+<input type="submit" value="Create Person"/>
 </form:form>
 </body>
 </html>

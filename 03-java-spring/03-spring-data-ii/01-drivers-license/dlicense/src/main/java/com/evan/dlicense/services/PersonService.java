@@ -2,6 +2,7 @@ package com.evan.dlicense.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.evan.dlicense.models.Person;
@@ -9,6 +10,7 @@ import com.evan.dlicense.repositories.PersonRepository;
 
 @Service
 public class PersonService {
+	@Autowired
 	private PersonRepository pRepo;
 	
 	public PersonService(PersonRepository repo) {
@@ -23,7 +25,7 @@ public class PersonService {
 		return pRepo.save(person);
 	}
 	
-	public Person getPerson(Long id) {
+	public Person getSinglePerson(Long id) {
 		return this.pRepo.findById(id).orElse(null);
 	}
 

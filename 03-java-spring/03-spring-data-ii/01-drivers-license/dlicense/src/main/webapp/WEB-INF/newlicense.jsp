@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>New License</h1>
-<form:form action="/persons/{id}" method="post" modelAttribute="license">
+<form:form action="/licenses/new" method="post" modelAttribute="license">
 <p>
 <form:label path="person">Person: </form:label>
 <form:errors path="person"/>

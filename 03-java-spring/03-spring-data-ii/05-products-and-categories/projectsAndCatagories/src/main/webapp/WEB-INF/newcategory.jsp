@@ -2,17 +2,23 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Profile Page</title>
+<title>New Category Page</title>
 </head>
 <body>
-<h1><c:out value="${person.firstName } ${person.lastName }"/></h1>
-<p>License Number:000000 <c:out value="${person.license.getNumberAsString}"/></p>
-<p>State: <c:out value="${person.license.state}"/></p>
-<p>Expiration Date: <c:out value="${person.license.getExpirationDateFormatted}"/></p>
+<h1>New Category</h1>
+<form:form action="/categories/new" method="post" modelAttribute="category">
+<p>
+<form:label path="name">Name</form:label>
+<form:errors path="name"/>
+<form:input path="name"/>
+</p>
+<input type="submit" value="Create"/>
+</form:form>
+
+
 </body>
 </html>
