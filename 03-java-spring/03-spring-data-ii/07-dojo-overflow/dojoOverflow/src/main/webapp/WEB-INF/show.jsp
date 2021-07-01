@@ -24,24 +24,27 @@
 <th>Answers: </th>
 </tr>
 </thead>
-<c:forEach items="${question.answers}" var="answer">
 <tbody>
 <tr>
-<td><c:out value="${answer.answer}"/></td>
+<td>
+<ul>
+<c:forEach items="${question.answers}" var="answer">
+	<li>"${answer.answer}"</li>
+</c:forEach>
+</ul>
 </tr>
 </tbody>
-</c:forEach>
 </table>
+<h3>Add your Answer: </h3>
 <c:forEach items="${errors}" var="err">
 <h4>${err}</h4>
 </c:forEach>
-<form:form action="/answers" method="post" modelAttribute="answer">
-<h3>Add your Answer: </h3>
-<div class="form-group row">
+<form:form action="/questions/answers" method="post" modelAttribute="answer">
 <form:hidden path="question" value="${question.id}"/>
-<form:label path="answer">Answer: 
+<div class="form-group">
+<form:label path="answer">Answer: </form:label>
 <form:errors path="answer"/>
-<form:textarea path="answer" class="form-control" type="text" value="${answer.answer}"/></form:label>
+<form:textarea path="answer" class="form-control" type="text" value="${answer.answer}"></form:textarea>
 </div>
 <button class="btn btn-primary">Answer it!</button>
 </form:form><br>

@@ -2,6 +2,7 @@ package com.evan.dojoOverflow.controllers;
 
 import java.util.List;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,18 +56,22 @@ public class DojoController {
 	@GetMapping("/questions/{id}")
 	public String showQuestion(@PathVariable("id") Long id, @ModelAttribute("answer") Answer answer, Model model) {
 		Long questionId = id;
-		List<Answer> allAnswers = this.dService.getAllAnswers();
+		List<Answer> answers = this.dService.getAllAnswers();
 		model.addAttribute("question", this.dService.getQuestion(questionId));
 		model.addAttribute("allAnswers", this.dService.getAllAnswers());
 		return "show.jsp";
 	}
+	@GetMapping("/questions/answers")
+	public String showAnswers(@PathVariable("id") Long id, @ModelAttribute("answer") Answer answer) {
+		return "show.jsp";
+	}
 	
-	@PostMapping("/questions/answers")
+	@PostMapping("/questions/{id}")
 	public String createAnswers(@Valid @ModelAttribute("answer") Answer answer, BindingResult result, Model model, Long id) {
 		if(result.hasErrors()) {
 			return "show.jsp";
 		} else {
-			this.dService.createAnswer(answer);
+			this.dService.addAnswer(answer);
 			return "redirect:/questions/" + answer.getQuestion().getId();
 		}
 	}

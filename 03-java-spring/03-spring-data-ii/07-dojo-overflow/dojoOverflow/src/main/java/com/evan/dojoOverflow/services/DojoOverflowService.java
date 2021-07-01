@@ -72,6 +72,9 @@ public class DojoOverflowService {
 		selectedQuestion.add(answer); 
 		this.aRepo.save(answer);
 	}
+	public Answer addAnswer(Answer answer) {
+		return this.aRepo.save(answer);
+	}
 	
 
 	public List<Tag> getAllTags() {
